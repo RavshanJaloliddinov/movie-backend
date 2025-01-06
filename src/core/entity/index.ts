@@ -1,0 +1,10 @@
+export * from './actor.entity'
+export * from './device.entity'
+export * from './favorite_movie.entity'
+export * from './file.entity'
+export * from './genre.entity'
+export * from './movie.entity'
+export * from './review.entity'
+export * from './user.entity'
+export * from './watched_movie.entity'
+
