@@ -7,6 +7,7 @@ dotenv.config()
 export type ConfigType = {
     PORT: number
     DB_URL: string
+    REDIS_PORT: number
     GOOGLE_OAUTH_CLIENT_ID: string
     GOOGLE_OAUTH_CLIENT_SECRET: string
     JWT_SECRET: string
@@ -21,6 +22,7 @@ export type ConfigType = {
 const requiredVariables = [
     "PORT",
     "DB_URL",
+    "REDIS_PORT",
     "GOOGLE_OAUTH_CLIENT_ID",
     "GOOGLE_OAUTH_CLIENT_SECRET",
     "JWT_SECRET",
@@ -45,6 +47,7 @@ if (missingVariables.length > 0) {
 export const config: ConfigType = {
     PORT: parseInt(process.env.PORT as string, 10),
     DB_URL: process.env.DB_URL as string,
+    REDIS_PORT: parseInt(process.env.REDIS_PORT as string, 10),
     GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID as string,
     GOOGLE_OAUTH_CLIENT_SECRET: process.env.GOOGLE_OAUTH_CLIENT_SECRET as string,
     JWT_SECRET: process.env.JWT_SECRET as string,

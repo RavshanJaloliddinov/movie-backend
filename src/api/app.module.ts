@@ -37,7 +37,7 @@ import { join } from 'path';
     RedisModule.forRoot({
       type: "single",
       options: {
-        port: 6380,
+        port: config.REDIS_PORT,
         host: "localhost"
       }
     }),

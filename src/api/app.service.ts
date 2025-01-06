@@ -9,8 +9,13 @@ export default class Application {
   public static async main(): Promise<void> {
     const app = await NestFactory.create(AppModule);
 
-    app.enableCors();
-
+    
+    app.enableCors({
+      origin: ['http://localhost:4000', 'http://localhost:4000/api#'], // Faoliyatdagi domenlar
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Ruxsat berilgan metodlar
+      allowedHeaders: ['Content-Type', 'Authorization'],  // Yuboriladigan sarlavhalar
+    });
+    
     // COMPRESSION
     app.use(compression())
 

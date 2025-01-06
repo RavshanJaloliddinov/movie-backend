@@ -1,0 +1,33 @@
+# Node.js papkalari
+node_modules
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+
+# Loyiha kompilyatsiya qilingan fayllar (masalan, TypeScript uchun)
+dist
+build
+
+# Git fayllari
+.git
+.gitignore
+
+# Docker va Compose fayllari (Docker konteyner ichida kerak emas)
+Dockerfile
+docker-compose.yml
+
+# Muhit o'zgaruvchilari (ma'lumotlaringizni himoya qilish uchun)
+.env
+.env.local
+.env.test
+.env.production
+
+# IDE va tahrirlagich fayllari
+.vscode
+.idea
+*.swp
+*.swo
+
+# Operatsion tizim va tahlilchi fayllari
+.DS_Store
+Thumbs.db

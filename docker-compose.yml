@@ -2,20 +2,47 @@ version: '1.0'
 
 services: 
   backend:
-    image: node:18-alpine
-    container_name: feane
+    build:
+      context: .  # Dockerfile joylashgan papka
+    container_name: backend
     env_file: 
-      - .env  # .env faylini konteynerga yuklash
-    working_dir: /app  # Konteynerdagi ishchi katalog
+      - .env
     volumes:
-      - ./:/app  # Joriy papkani konteynerga /app sifatida bog'lash
-    command: sh -c "npm install reflect-metadata@^0.2.2 --legacy-peer-deps && npm run start"  # Kerakli paketlarni o'rnatish va ishga tushurish
+      - .:/usr/local/app
     ports:
-      - "4000:4000"  # Portni ochish
+      - "4000:4000"
     networks:
-      - backend_network  # Tarmoqni yaratish va unga ulanish
-    restart: always  # Avtomatik qayta ishga tushirish
+      - backend_network
+    depends_on:
+      - redis
+      - postgres
+    restart: always
+
+  redis:
+    image: redis:7-alpine  # Redis rasmidan foydalanish
+    container_name: redis
+    ports:
+      - "6379:6379"  # Redis portini ochish
+    networks:
+      - backend_network
+    restart: always
+
+  postgres:
+    image: postgres:15-alpine  # PostgreSQL rasmidan foydalanish
+    container_name: postgres
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"  # PostgreSQL portini ochish
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Ma'lumotlarni saqlash
+    networks:
+      - backend_network
+    restart: always
 
 networks:
   backend_network:
     driver: bridge
+
+volumes:
+  postgres_data:
